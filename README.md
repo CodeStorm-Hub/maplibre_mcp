@@ -10,10 +10,13 @@
 
 <p align="center">
   <a href="https://github.com/CodeStorm-Hub/maplibre_mcp/releases/tag/v1.0.0"><img src="https://img.shields.io/github/v/release/CodeStorm-Hub/maplibre_mcp?style=flat-square&color=blue" alt="GitHub Release"></a>
+  <a href="https://github.com/CodeStorm-Hub/maplibre_mcp/stargazers"><img src="https://img.shields.io/github/stars/CodeStorm-Hub/maplibre_mcp?style=flat-square&color=gold" alt="GitHub Stars"></a>
+  <a href="https://github.com/CodeStorm-Hub/maplibre_mcp/network/members"><img src="https://img.shields.io/github/forks/CodeStorm-Hub/maplibre_mcp?style=flat-square&color=grey" alt="GitHub Forks"></a>
+  <a href="https://github.com/CodeStorm-Hub/maplibre_mcp/issues"><img src="https://img.shields.io/github/issues/CodeStorm-Hub/maplibre_mcp?style=flat-square&color=orange" alt="GitHub Issues"></a>
+  <a href="https://komarev.com/ghpvc/?username=CodeStorm-Hub-maplibre-mcp&color=blue&style=flat-square&label=REPOSITORY+VISITS"><img src="https://komarev.com/ghpvc/?username=CodeStorm-Hub-maplibre-mcp&color=blue&style=flat-square&label=REPOSITORY+VISITS" alt="Repository Visitor Count"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT"></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=flat-square" alt="Node Version"></a>
   <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-SDK--1.6.0-blueviolet.svg?style=flat-square" alt="MCP SDK"></a>
-  <a href="https://github.com/CodeStorm-Hub/maplibre_mcp/actions"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square" alt="Build Status"></a>
 </p>
 
 ---
@@ -22,18 +25,38 @@
 
 The **MapLibre All-in-One MCP Server** brings deep geospatial intelligence and code generation capabilities to AI coding assistants (**Claude Desktop, Cursor, Antigravity, Windsurf**). Built on a modular 2-layer architecture, it enables AI agents to query documentation across 43 developer repositories, validate & generate MapLibre Style JSONs, scaffold Martin Rust tile servers and PostGIS MVT functions, perform offline spatial math, and generate complete Flutter mapping widgets and clustering layers.
 
+* 🌐 **Official Repository**: [https://github.com/CodeStorm-Hub/maplibre_mcp](https://github.com/CodeStorm-Hub/maplibre_mcp)
+* 📝 **Public GitHub Gist Showcase**: [MapLibre MCP Gist](https://gist.github.com/syed-reza98/bd2edc9382b218965675db4c3f311a55)
+
 ---
 
-## 📊 Ecosystem Statistics & Highlights
+## 📊 Ecosystem Statistics & Visitor Analytics
+
+### Repository & Usage Metrics
 
 | Metric | Count / Detail | Description |
 |--------|----------------|-------------|
 | **Repositories Indexed** | `43 / 57` Repositories | Mapped across WebGL, Native C++, Flutter, Compose, Style Spec, Tile Spec, Martin |
 | **Registered MCP Tools** | `11` Specialized Tools | Divided across Layer 1 (Core Base) and Layer 2 (Flutter Framework) |
 | **Embedded Agent Skills** | `3` Community Skills | Mapbox Migration Guide, PMTiles Patterns, Free/Commercial Tile Sources |
-| **Spatial Math Engine** | `0` External Lat/Lng Latencies | Offline camera center, LatLngBounds, and recommended zoom level calculator |
-| **Validation Rigor** | `100%` Specification Compliance | Powered directly by `@maplibre/maplibre-gl-style-spec` |
+| **Spatial Math Engine** | `0` External Latencies | Offline camera center, LatLngBounds, and recommended zoom level calculator |
+| **Specification Rigor** | `100%` Compliance | Powered directly by `@maplibre/maplibre-gl-style-spec` |
 | **Automated Test Coverage** | `10/10` Tests Passing | 100% unit/integration pass rate + stdio JSON-RPC protocol validation |
+| **Live Visitor Tracking** | Dynamic Counter | Real-time traffic tracking powered by `komarev/ghpvc` |
+
+### Tool Category Usage Distribution
+
+```
++-----------------------------------------------------------------------------------+
+| TOOL CATEGORY                 | WEIGHT  | PRIMARY USAGE TARGETS                   |
++-------------------------------+---------+-----------------------------------------+
+| 🔍 Docs & Repository Search   | 18.2%   | 43 Developer Repos & Examples           |
+| 🎨 Style Spec & Generation    | 18.2%   | 3D Buildings, Vector Tiles, Spec Validation|
+| ⚙️ Tile Infrastructure        | 18.2%   | Martin Docker, PostGIS MVT, PMTiles CORS|
+| 📐 Spatial Viewport Math      | 9.1%    | Offline BBox, Camera Center & Zoom      |
+| 📱 Flutter & Dart Tools       | 36.3%   | Widgets, PMTiles, Layers, GeoJSON Cluster|
++-----------------------------------------------------------------------------------+
+```
 
 ---
 
