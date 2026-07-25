@@ -4,3 +4,9 @@ dist/
 .DS_Store
 .env
 .env.*
+
+# Temporary research and test logs
+MapLibre_ Open-Source Mapping Ecosystem.md
+maplibre_repositories.md
+maplibre_categorized_repos.md
+mcp_tools_test_results.md
