@@ -96,7 +96,8 @@ const EMBEDDED_DOCS_INDEX: DocEntry[] = [
 ];
 
 export class DocsSearchEngine {
-  private docsIndex: DocEntry[];
+  private docsIndex: DocEntry[] = [];
+
 
   constructor() {
     const possiblePaths = [

@@ -89,7 +89,7 @@ const EMBEDDED_DOCS_INDEX = [
     }
 ];
 class DocsSearchEngine {
-    docsIndex;
+    docsIndex = [];
     constructor() {
         const possiblePaths = [
             path_1.default.join(__dirname, '../data/docs_index.json'),
