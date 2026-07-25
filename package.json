@@ -1,0 +1,44 @@
+{
+  "name": "maplibre-mcp-server",
+  "version": "1.0.0",
+  "description": "All-in-One Model Context Protocol (MCP) Server for the MapLibre Mapping Ecosystem",
+  "main": "dist/index.js",
+  "bin": {
+    "maplibre-mcp-server": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"fs.cpSync('src/data', 'dist/data', {recursive: true})\"",
+    "start": "node dist/index.js",
+    "test": "node test/test_runner.js",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeStorm-Hub/maplibre_mcp.git"
+  },
+  "homepage": "https://github.com/CodeStorm-Hub/maplibre_mcp#readme",
+  "bugs": {
+    "url": "https://github.com/CodeStorm-Hub/maplibre_mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "maplibre",
+    "gis",
+    "maps",
+    "flutter",
+    "geospatial",
+    "pmtiles",
+    "martin"
+  ],
+  "author": "CodeStorm Hub & MapLibre Community",
+  "license": "MIT",
+  "dependencies": {
+    "@maplibre/maplibre-gl-style-spec": "^21.0.0",
+    "@modelcontextprotocol/sdk": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
