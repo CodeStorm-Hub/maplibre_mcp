@@ -1,10 +1,11 @@
 # MapLibre All-in-One MCP Server (`maplibre-mcp-server`)
 
+[![GitHub Release](https://img.shields.io/github/v/release/CodeStorm-Hub/maplibre_mcp?style=flat-square&color=blue)](https://github.com/CodeStorm-Hub/maplibre_mcp/releases/tag/v1.0.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg)](https://nodejs.org/)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-SDK--1.6.0-brightgreen.svg)](https://modelcontextprotocol.io/)
 
-An open-source, multi-capability **Model Context Protocol (MCP) Server** providing AI coding assistants (Claude Desktop, Cursor, Antigravity, Windsurf) with comprehensive access to the entire **MapLibre** open-source mapping ecosystem.
+An open-source, multi-capability **Model Context Protocol (MCP) Server** hosted by **[CodeStorm Hub](https://github.com/CodeStorm-Hub)** providing AI coding assistants (Claude Desktop, Cursor, Antigravity, Windsurf) with comprehensive access to the entire **MapLibre** open-source mapping ecosystem.
 
 ---
 
@@ -40,24 +41,32 @@ The MapLibre MCP Server is built on a modular **2-Layer Architecture**:
 * **Node.js**: v18.0.0 or higher
 * **npm**: v9.0.0 or higher
 
-### Step 1: Clone & Build
-
-```bash
-# Clone the repository
-git clone https://github.com/maplibre/maplibre_mcp.git
-cd maplibre_mcp
-
-# Install dependencies and build TypeScript code
-npm install
-npm run build
-```
-
 ---
 
-### Step 2: Configure Your AI Assistant
+### Option A: Direct NPX Execution from GitHub (Recommended)
 
-#### **A. Claude Desktop**
-Add the server entry to your `claude_desktop_config.json`:
+No manual code downloading required! You can run the MCP server directly from the official **CodeStorm Hub** GitHub repository.
+
+#### **1. Antigravity CLI (`mcp_config.json`)**
+
+Add to your `~/.gemini/config/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "maplibre": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "github:CodeStorm-Hub/maplibre_mcp"
+      ]
+    }
+  }
+}
+```
+
+#### **2. Claude Desktop (`claude_desktop_config.json`)**
+
 * **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 * **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
@@ -65,29 +74,48 @@ Add the server entry to your `claude_desktop_config.json`:
 {
   "mcpServers": {
     "maplibre": {
-      "command": "node",
-      "args": ["J:/GitHub/maplibre_mcp/dist/index.js"]
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:CodeStorm-Hub/maplibre_mcp"
+      ]
     }
   }
 }
 ```
 
-#### **B. Cursor IDE**
-1. Navigate to **Cursor Settings** -> **Features** -> **MCP**.
+#### **3. Cursor IDE / Windsurf**
+
+1. Navigate to **Settings** -> **MCP**.
 2. Click **+ Add New MCP Server**.
 3. Set **Name**: `maplibre`
 4. Set **Type**: `command`
-5. Set **Command**: `node J:/GitHub/maplibre_mcp/dist/index.js`
+5. Set **Command**: `npx -y github:CodeStorm-Hub/maplibre_mcp`
 
-#### **C. Antigravity CLI / IDE**
-Add the server configuration to your `antigravity_mcp.json` or workspace settings:
+---
 
+### Option B: Local Repository Build
+
+```bash
+# Clone from CodeStorm Hub GitHub Organization
+git clone https://github.com/CodeStorm-Hub/maplibre_mcp.git
+cd maplibre_mcp
+
+# Install dependencies and build TypeScript code
+npm install
+npm run build
+
+# Start the stdio MCP server
+npm start
+```
+
+Point your MCP client configuration to local binary `dist/index.js`:
 ```json
 {
   "mcpServers": {
     "maplibre": {
       "command": "node",
-      "args": ["J:/GitHub/maplibre_mcp/dist/index.js"]
+      "args": ["/path/to/maplibre_mcp/dist/index.js"]
     }
   }
 }
@@ -109,23 +137,9 @@ Search documentation, guides, and example code across all 43 developer repositor
 * **Example Input:**
   ```json
   {
-    "query": "3D buildings",
-    "ecosystem": "all"
+    "query": "native",
+    "ecosystem": "native"
   }
-  ```
-* **Example Response:**
-  ```json
-  [
-    {
-      "repo": "maplibre-gl-js",
-      "ecosystem": "gl-js",
-      "description": "Core WebGL/WebGPU interactive vector tile mapping engine for web browsers",
-      "stars": 11141,
-      "language": "TypeScript",
-      "docs_url": "https://maplibre.org/maplibre-gl-js/docs/",
-      "doc_dirs": ["https://github.com/maplibre/maplibre-gl-js/tree/main/docs"]
-    }
-  ]
   ```
 
 ---
@@ -143,13 +157,6 @@ Parse and validate a MapLibre Style JSON object against the official `@maplibre/
     }
   }
   ```
-* **Example Response:**
-  ```json
-  {
-    "valid": true,
-    "errors": []
-  }
-  ```
 
 ---
 
@@ -162,39 +169,6 @@ Construct a complete, valid MapLibre Style JSON for light/dark themes, 3D fill-e
     "theme": "dark",
     "tileSource": "openfreemap",
     "enable3DBuildings": true
-  }
-  ```
-* **Example Response:**
-  ```json
-  {
-    "version": 8,
-    "name": "MapLibre Generated Style (dark)",
-    "sources": {
-      "basemap-source": {
-        "type": "vector",
-        "url": "https://tiles.openfreemap.org/planet"
-      }
-    },
-    "layers": [
-      {
-        "id": "background",
-        "type": "background",
-        "paint": { "background-color": "#191a1a" }
-      },
-      {
-        "id": "3d-buildings",
-        "type": "fill-extrusion",
-        "source": "basemap-source",
-        "source-layer": "building",
-        "minzoom": 15,
-        "paint": {
-          "fill-extrusion-color": "#2b2c2e",
-          "fill-extrusion-height": ["get", "render_height"],
-          "fill-extrusion-base": ["get", "render_min_height"],
-          "fill-extrusion-opacity": 0.8
-        }
-      }
-    ]
   }
   ```
 
@@ -210,22 +184,6 @@ Generate configurations for tile servers (Martin Docker Compose, PostGIS `ST_AsM
     "dbName": "spatial_db"
   }
   ```
-* **Example Response:**
-  ```yaml
-  version: '3.8'
-
-  services:
-    martin:
-      image: ghcr.io/maplibre/martin:latest
-      restart: always
-      ports:
-        - "3000:3000"
-      environment:
-        - DATABASE_URL=postgres://postgres:password@db:5432/spatial_db
-      volumes:
-        - ./tiles:/files
-      command: martin /files/planet.pmtiles
-  ```
 
 ---
 
@@ -238,8 +196,6 @@ Retrieve structured community agent skills (`mapbox-migration`, `pmtiles-pattern
     "skill": "pmtiles-patterns"
   }
   ```
-* **Example Response:**
-  Returns markdown instructions for initializing PMTiles with `maplibregl.addProtocol('pmtiles', protocol.tile)`.
 
 ---
 
@@ -256,19 +212,6 @@ Offline spatial math calculator that computes camera center `[lng, lat]`, `LatLn
     "padding": 0.05
   }
   ```
-* **Example Response:**
-  ```json
-  {
-    "center": [-73.9706, 40.7217],
-    "bounds": {
-      "minLng": -74.056,
-      "minLat": 40.6628,
-      "maxLng": -73.8852,
-      "maxLat": 40.7806
-    },
-    "recommendedZoom": 12
-  }
-  ```
 
 ---
 
@@ -280,12 +223,10 @@ Scaffold Flutter project setup files: `pubspec.yaml` dependencies, Android `Andr
 * **Example Input:**
   ```json
   {
-    "packageName": "my_map_app",
+    "packageName": "speedy_delivery",
     "includeLocationPermissions": true
   }
   ```
-* **Example Response:**
-  Generates production-ready `pubspec.yaml`, `AndroidManifest.xml`, and `Info.plist` snippets.
 
 ---
 
@@ -296,41 +237,11 @@ Generate a complete Flutter widget implementing MapLibre with camera position, s
   ```json
   {
     "packageType": "maplibre_gl",
-    "styleSource": "url",
-    "initialLatitude": 37.7749,
-    "initialLongitude": -122.4194,
-    "initialZoom": 12.0,
+    "styleSource": "pmtiles",
+    "initialLatitude": 35.6762,
+    "initialLongitude": 139.6503,
+    "initialZoom": 13.5,
     "enableMyLocation": true
-  }
-  ```
-* **Example Response:**
-  ```dart
-  import 'package:flutter/material.dart';
-  import 'package:maplibre_gl/maplibre_gl.dart';
-
-  class MapScreen extends StatefulWidget {
-    const MapScreen({Key? key}) : super(key: key);
-
-    @override
-    State<MapScreen> createState() => _MapScreenState();
-  }
-
-  class _MapScreenState extends State<MapScreen> {
-    MaplibreMapController? mapController;
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        body: MaplibreMap(
-          styleString: 'https://demotiles.maplibre.org/style.json',
-          initialCameraPosition: const CameraPosition(
-            target: LatLng(37.7749, -122.4194),
-            zoom: 12.0,
-          ),
-          myLocationEnabled: true,
-        ),
-      );
-    }
   }
   ```
 
@@ -344,7 +255,7 @@ Generate Dart code for registering local or remote `.pmtiles` and `.mbtiles` cus
   {
     "tileType": "pmtiles",
     "isLocalAsset": true,
-    "filePathOrUrl": "assets/map_data.pmtiles"
+    "filePathOrUrl": "assets/tokyo.pmtiles"
   }
   ```
 
@@ -370,10 +281,10 @@ Generate Dart code for loading GeoJSON point sources with interactive clustering
 * **Example Input:**
   ```json
   {
-    "sourceId": "store-locations",
-    "geoJsonUrlOrPath": "assets/stores.geojson",
-    "clusterMaxZoom": 14,
-    "clusterRadius": 50
+    "sourceId": "ev-stations",
+    "geoJsonUrlOrPath": "assets/ev_stations.geojson",
+    "clusterMaxZoom": 15,
+    "clusterRadius": 40
   }
   ```
 
@@ -391,6 +302,7 @@ node test/stdio_test.js
 
 ---
 
-## 📄 License
+## 🤝 Organization & License
 
-Distributed under the **MIT License**. Free for commercial and non-commercial use.
+Hosted and maintained by **[CodeStorm Hub](https://github.com/CodeStorm-Hub)**.
+Distributed under the **MIT License**. Free for open-source and commercial use.
