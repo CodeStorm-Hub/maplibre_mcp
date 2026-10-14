@@ -35,7 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "@maplibre/maplibre-gl-style-spec": "^21.0.0",
-    "@modelcontextprotocol/sdk": "^1.6.0"
+    "@modelcontextprotocol/sdk": "^1.31.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
